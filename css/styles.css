@@ -10,7 +10,7 @@
   --color-white: #ffffff;
 
   --border-radious-12: 12px;
-  --box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.2);
+  --box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.2);
 }
 
 html {
@@ -66,7 +66,7 @@ li {
 }
 
 h1 {
-  font-size: 1.45rem;
+  font-size: 1.75rem;
   font-weight: 500;
 }
 
@@ -212,7 +212,7 @@ img {
 
 @media (min-width: 768px) {
   h1 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
   }
   h2 {
     font-size: 2rem;
@@ -227,7 +227,7 @@ img {
 
 @media (min-width: 1200px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
   h2 {
     font-size: 2rem;
@@ -245,10 +245,13 @@ img {
   position: sticky;
   top: 0;
   background-color: var(--color-white);
-  box-shadow: 0 0 5px -2px #303030b6;
+
   transition: all 0.3s ease;
   padding: 1rem 0;
   z-index: 999;
+}
+.header.expand {
+  box-shadow: 0 0 6px -2px #30303082;
 }
 .header__nav {
   display: flex;
@@ -395,9 +398,10 @@ img {
 /* =============== Hero Style Start =============== */
 .hero {
   position: relative;
-  background-image: url('./../assets/images/banner.png');
+  background-image: url('./../assets/images/banner-sm.png');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   background-color: var(--primary);
   color: var(--color-white);
 }
@@ -412,9 +416,18 @@ img {
   z-index: 6;
 }
 
+.hero-mask {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(16, 136, 255, 0.5);
+  z-index: 1;
+}
+
 .hero .container {
+  position: relative;
   max-width: 910px;
   width: 100%;
+  z-index: 8;
 }
 
 .hero__content {
@@ -422,7 +435,7 @@ img {
   padding: 100px 0;
 }
 .hero__content h2 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 1.5rem;
   font-weight: 400;
 }
@@ -436,12 +449,21 @@ img {
   margin-bottom: 1.5rem;
 }
 @media (min-width: 576px) {
+  .hero-mask {
+    display: none;
+  }
   .hero__content {
     width: 80%;
+  }
+  .hero__content h2 {
+    font-size: 1.25rem;
   }
 }
 
 @media (min-width: 768px) {
+  .hero {
+    background-image: url('./../assets/images/banner-md.png');
+  }
   .hero .container::after {
     width: 10px;
   }
@@ -458,8 +480,16 @@ img {
     width: 50%;
     padding: 140px 0;
   }
+  .hero__content h2 {
+    font-size: 1.5rem;
+  }
   .hero__content p {
     margin-bottom: 2rem;
+  }
+}
+@media (min-width: 1200px) {
+  .hero {
+    background-image: url('./../assets/images/banner.png');
   }
 }
 /* =============== Hero Style End =============== */
@@ -537,14 +567,14 @@ img {
   font-size: 1rem;
 }
 .timer__event-body {
-  padding: 1rem;
+  padding: 1rem 2rem;
 }
 
 .timer__event-list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
+  justify-content: space-evenly;
+  gap: 1rem;
 }
 
 .timer__event-list a {
@@ -552,7 +582,7 @@ img {
 }
 
 .timer__event-list img {
-  height: 26px;
+  height: 30px;
   width: auto;
 }
 
@@ -601,7 +631,7 @@ img {
     font-size: 1.125rem;
   }
   .timer__event-body {
-    padding: 1.2rem 1rem;
+    padding: 1.2rem 2rem;
   }
   .timer__event-list {
     gap: 1.5rem;
@@ -636,12 +666,6 @@ img {
   .timer__item-separator {
     transform: translateY(18px);
   }
-  .timer__event-body {
-    padding: 1.2rem 2rem;
-  }
-  .timer__event-list {
-    justify-content: space-evenly;
-  }
   .timer__event-list img {
     height: 45px;
   }
@@ -664,17 +688,18 @@ img {
   background: linear-gradient(to bottom, #fff, rgba(16, 136, 255, 0.08), #fff);
   overflow: hidden;
 }
-.roads-shape {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 10%;
+.roads-shape,
+.roads-radial {
+  display: none;
   position: absolute;
-  top: 0;
-  left: 0;
   width: 50vw;
   height: 50vw;
   border-radius: 50%;
+  z-index: -1;
+}
+.roads-shape {
+  top: 10%;
+  left: 0;
   transform: translateX(-40%);
   background: radial-gradient(
     circle,
@@ -682,19 +707,10 @@ img {
     rgba(252, 149, 79, 0.6) 0%,
     rgba(255, 255, 255, 1) 60%
   );
-  z-index: -1;
 }
 .roads-radial {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 10%;
-  position: absolute;
-  bottom: 0;
+  bottom: 10%;
   right: 0;
-  width: 50vw;
-  height: 50vw;
-  border-radius: 50%;
   transform: translateX(40%);
   background: radial-gradient(
     circle,
@@ -702,12 +718,39 @@ img {
     rgba(16, 136, 255, 0.6) 0%,
     rgba(255, 255, 255, 1) 60%
   );
-  z-index: -1;
 }
-.roads-shape img,
-.roads-radial img {
+.roads-shape-icon {
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  transform: translateX(-40%);
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10%;
+  z-index: 2;
+}
+.roads-radial-icon {
+  display: none;
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  transform: translateX(40%);
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10%;
+  z-index: 2;
+}
+.roads-shape-icon img,
+.roads-radial-icon img {
   display: block;
-  width: 60px;
+  width: 40px;
   height: auto;
 }
 .roads .container {
@@ -718,15 +761,16 @@ img {
 .roads__cards {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
 }
 
 .roads__cards-card {
-  border: 2px solid rgba(255, 255, 255, 1);
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(18px);
-  padding: 2rem;
+  border: 2px solid rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  padding: 1rem;
 }
 .roads__cards-icon {
   display: flex;
@@ -736,7 +780,7 @@ img {
   height: 60px;
 }
 .roads__cards-icon img {
-  max-width: 60px;
+  max-width: 45px;
   height: auto;
 }
 
@@ -763,10 +807,61 @@ img {
 .roads__texts p {
   margin-bottom: 2rem;
 }
-
+@media (min-width: 576px) {
+  .roads-shape,
+  .roads-radial,
+  .roads-shape-icon,
+  .roads-radial-icon {
+    display: flex;
+  }
+  .roads__cards-icon img {
+    max-width: 50px;
+  }
+}
+@media (min-width: 768px) {
+  .roads-shape,
+  .roads-shape-icon {
+    top: 0;
+  }
+  .roads-radial,
+  .roads-radial-icon {
+    bottom: 0;
+  }
+  .roads-shape-icon img,
+  .roads-radial-icon img {
+    width: 60px;
+  }
+  .roads__cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .roads-shape {
+    top: 0;
+  }
+  .roads-radial {
+    bottom: 0;
+  }
+  .roads-radial-icon {
+    align-items: flex-end;
+  }
+  .roads__cards-icon img {
+    max-width: 60px;
+  }
+  .roads__cards-card {
+    padding: 1.5rem;
+  }
+}
 @media (min-width: 1200px) {
   .roads {
     padding: 80px 0;
+  }
+  .roads-shape-icon img,
+  .roads-radial-icon img {
+    width: 80px;
+  }
+  .roads__cards-card {
+    padding: 2rem;
   }
 }
 /* =============== Roads Style End =============== */
@@ -872,6 +967,10 @@ img {
   align-items: center;
   gap: 1rem;
 }
+.speaker__card-text {
+  font-size: 0.85rem;
+  text-align: justify;
+}
 .speaker__speaker-img {
   min-width: 50px;
   width: 50px;
@@ -891,6 +990,7 @@ img {
 }
 .speaker__speaker-info h3 {
   font-weight: 500;
+  font-size: 0.85rem !important;
   font-size: inherit;
   color: #1f5eea;
 }
@@ -921,11 +1021,9 @@ img {
     min-height: 60px;
     height: 60px;
   }
-  .speaker__speaker-info {
-    font-size: 1rem;
-  }
   .speaker__speaker-info h3 {
     font-weight: 400;
+    font-size: 1rem !important;
   }
 }
 
@@ -937,6 +1035,7 @@ img {
   }
   .speaker__card-speaker {
     width: 300px;
+    flex-shrink: 0;
   }
   .speaker__speaker-img {
     min-width: 80px;
@@ -946,7 +1045,7 @@ img {
   }
   .speaker__card-speaker {
     width: 40%;
-    padding-left: 2rem;
+    padding-left: 1rem;
   }
   .speaker__card-text {
     width: 60%;
@@ -959,6 +1058,7 @@ img {
   }
   .speaker__card {
     padding: 1rem 1.5rem;
+    gap: 2.5rem;
   }
   .speaker__speaker-img {
     min-width: 100px;
@@ -966,8 +1066,11 @@ img {
     min-height: 100px;
     height: 100px;
   }
+  .speaker__card-speaker {
+    padding-left: 2rem;
+  }
   .speaker__card-text {
-    flex: 55;
+    width: 55%;
   }
 }
 
@@ -1269,6 +1372,7 @@ img {
 .footer__copyright {
   text-align: center;
   color: var(--color-white);
+  font-size: 0.85rem;
 }
 
 @media (min-width: 576px) {
@@ -1288,6 +1392,9 @@ img {
   .footer__nav-link {
     width: 2.75rem;
     height: 2.75rem;
+  }
+  .footer__copyright {
+    font-size: 1rem;
   }
 }
 /* =============== Footer Style End =============== */
