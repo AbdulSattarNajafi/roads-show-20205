@@ -1093,7 +1093,7 @@ img {
 .agenda__table-wrapper {
   margin: 3rem 0;
   overflow-x: auto;
-  box-shadow: var(--box-shadow);
+  /* box-shadow: var(--box-shadow); */
 }
 
 .agenda__table {
