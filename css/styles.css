@@ -125,6 +125,11 @@ img {
   border-radius: 4px;
 }
 
+.link {
+  text-decoration: underline;
+  color: var(--primary);
+}
+
 .btn-nav {
   border: 1px solid var(--primary);
   background-color: var(--primary);
@@ -536,6 +541,7 @@ img {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  margin-bottom: -30px;
 }
 .timer__time {
   display: flex;
@@ -618,16 +624,18 @@ img {
   width: auto;
 }
 
-.contact {
-  margin-top: 50px;
-  background-color: var(--color-white);
-  border-radius: var(--border-radious-12);
-  overflow: hidden;
-  box-shadow: var(--box-shadow);
+.contact-wrapper {
+  padding-top: 80px;
 }
 .contact__form {
   position: relative;
   width: 100%;
+}
+.contact {
+  background-color: var(--color-white);
+  border-radius: var(--border-radious-12);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
 }
 
 .contact__form-header {
