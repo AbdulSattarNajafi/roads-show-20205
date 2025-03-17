@@ -85,7 +85,7 @@ li {
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 600;
 }
 
@@ -218,7 +218,7 @@ img {
 
 @media (min-width: 576px) {
   h1 {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
   h2 {
     font-size: 1.75rem;
@@ -239,7 +239,7 @@ img {
 
 @media (min-width: 768px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
   }
   h2 {
     font-size: 2rem;
@@ -257,7 +257,7 @@ img {
 
 @media (min-width: 1200px) {
   h1 {
-    font-size: 2.75rem;
+    font-size: 3rem;
   }
   h2 {
     font-size: 2rem;
@@ -429,10 +429,10 @@ img {
 /* =============== Hero Style Start =============== */
 .hero {
   position: relative;
-  background-image: url('./../assets/images/banner-sm.png');
+  background-image: url('./../assets/images/banner-sm.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right;
+  background-position: center;
   background-color: var(--primary);
   color: var(--color-white);
 }
@@ -447,27 +447,28 @@ img {
   z-index: 6;
 }
 
-.hero-mask {
+/* .hero-mask {
   position: absolute;
   inset: 0;
   background-color: rgba(16, 136, 255, 0.5);
   z-index: 1;
-}
+} */
 
 .hero .container {
   position: relative;
-  max-width: 910px;
+  max-width: 966px;
   width: 100%;
   z-index: 8;
 }
 
 .hero__content {
   width: 100%;
-  padding: 100px 0;
+  padding-top: 60px;
+  padding-bottom: 80px;
 }
 .hero__content h2 {
   font-size: 1.25rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 400;
 }
 
@@ -494,12 +495,17 @@ img {
 @media (min-width: 768px) {
   .hero {
     background-image: url('./../assets/images/banner-md.png');
+    background-position: right;
   }
   .hero .container::after {
     width: 10px;
   }
+  .hero__content {
+    padding: 100px 0;
+  }
   .hero__content h2 {
     font-size: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   .hero__content p {
     margin-bottom: 1.5rem;
@@ -526,7 +532,7 @@ img {
 }
 @media (min-width: 1200px) {
   .hero__content h2 {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
   }
 }
 /* =============== Hero Style End =============== */
