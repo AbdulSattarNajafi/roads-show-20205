@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const items = document.querySelectorAll('.timer__item-time');
   // Date Setting
   // futureDate = YYYY/MM/DD /HH/MM/SS GMT+0800 => Hong Kong Time zone
-  const futureDate = new Date('2025-05-15 12:00:00 GMT+0800');
+  // const futureDate = new Date('2025-05-15 12:00:00 GMT+0800');
+  const futureDate = new Date('2025-05-15T12:00:00+08:00');
 
   const futureTime = futureDate.getTime();
 
