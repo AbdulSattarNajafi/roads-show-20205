@@ -48,54 +48,41 @@ const footerYear = document.getElementById('full-year');
 footerYear.textContent = new Date().getFullYear();
 
 // ===================== Timer
-const items = document.querySelectorAll('.timer__item-time');
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.timer__item-time');
+  // Date Setting
+  // futureDate = YYYY/MM/DD /HH/MM/SS GMT+0800 => Hong Kong Time zone
+  const futureDate = new Date('2025-05-15 12:00:00 GMT+0800');
 
-// Date Setting
-// futureDate = YYYY/MM/DD /HH/MM/SS GMT+0800 => Hong Kong Time zone
-const futureDate = new Date('2025-03-15 12:00:00 GMT+0800');
+  const futureTime = futureDate.getTime();
 
-const oneHour = 60 * 60 * 1000;
+  function getRemainingTime() {
+    const now = new Date().getTime();
+    const t = futureTime - now;
 
-//Future Time in ms
-const futureTime = futureDate.getTime();
+    const oneDay = 24 * 60 * 60 * 1000;
+    const oneHour = 60 * 60 * 1000;
+    const oneMinute = 60 * 1000;
+    const oneSecond = 1000;
 
-function getRemainingTime() {
-  const today = new Date().getTime();
-  const t = futureTime - today;
-  const oneDay = 24 * 60 * 60 * 1000;
-  const oneHour = 60 * 60 * 1000;
-  const oneMinute = 60 * 1000;
-  const oneSecond = 1000;
-  let day = Math.floor(t / oneDay);
-  let hour = Math.floor((t % oneDay) / oneHour);
-  let minute = Math.floor((t % oneHour) / oneMinute);
-  let second = Math.floor((t % oneMinute) / oneSecond);
+    let day = Math.floor(t / oneDay);
+    let hour = Math.floor((t % oneDay) / oneHour);
+    let minute = Math.floor((t % oneHour) / oneMinute);
+    let second = Math.floor((t % oneMinute) / oneSecond);
 
-  const val = [day, hour, minute, second];
-  // if value is less than 10 then throw 0 before the value
-  function format(item) {
-    if (item < 10) {
-      return `0${item}`;
-    } else {
-      return item;
+    const val = [day, hour, minute, second];
+
+    function format(item) {
+      return item < 10 ? `0${item}` : item;
     }
+
+    items.forEach((item, index) => {
+      item.innerHTML = t > 1 ? format(val[index]) : '00';
+    });
+
+    if (t < 1) clearInterval(countdown);
   }
 
-  //Displaying in the DOM
-  items.forEach(function (item, index) {
-    if (t > 1) {
-      item.innerHTML = format(val[index]);
-    } else {
-      item.innerHTML = '00';
-    }
-  });
-
-  if (t < 1) {
-    clearInterval(countdown);
-  }
-}
-
-//Countdown
-let countdown = setInterval(getRemainingTime, 1000);
-//invoking the function after interval
-getRemainingTime();
+  let countdown = setInterval(getRemainingTime, 1000);
+  getRemainingTime();
+});
